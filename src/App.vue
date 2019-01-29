@@ -1,29 +1,34 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<div id="app">
+		<!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
+		<the-header/>
+		<router-view/>
+		<the-footer/>
+	</div>
+
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+    import TheHeader from './views/header.vue';
+    import TheFooter from './views/footer.vue';
+
+    export default {
+        name: "app",
+        components: {
+            'the-header': TheHeader,
+            'the-footer': TheFooter
+        }
     }
-  }
-}
+</script>
+
+
+<style lang="scss">
+	/*@import 'scss/common';*/
+	/*@import 'scss/base';*/
+	#app {
+		font-family: 'Roboto', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		color: #2c3e50;
+	}
 </style>
