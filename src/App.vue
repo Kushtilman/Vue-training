@@ -23,8 +23,8 @@
 
 
 <style lang="scss">
-	/*@import 'scss/common';*/
-	/*@import 'scss/base';*/
+	@import 'scss/_common.scss';
+
 	#app {
 		font-family: 'Roboto', sans-serif;
 		-webkit-font-smoothing: antialiased;

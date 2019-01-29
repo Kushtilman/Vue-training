@@ -1,0 +1,53 @@
+.card {
+    color: $white;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 50px;
+    @include media('>tablet') {
+        width: 50%;
+    }
+    @include media('>desktop') {
+        width: 25%;
+        margin-bottom: 0;
+    }
+    .card-holder {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        height: 100%;
+    }
+    .img-holder {
+        position: relative;
+        height: 100px;
+        margin-bottom: 40px;
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .text-holder {
+        flex: 1 0 auto;
+        margin-bottom: 20px;
+    }
+    .h4 {
+        color: $bg-light;
+        position: relative;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            height: 3px;
+            width: 200px;
+            background: $bg-light;
+            transform: translateX(-50%);
+        }
+    }
+    .btn {
+        flex: 0 0 auto;
+    }
+}

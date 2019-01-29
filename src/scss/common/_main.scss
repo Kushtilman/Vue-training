@@ -1,0 +1,22 @@
+body {
+    font-size: calc(100vw * 0.0054 + 13px);
+    @include media('>widescreen') {
+        font-size: 20px;
+    }
+}
+
+#wrapper {
+    position: relative;
+}
+
+.container {
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 45px 15px;
+}
+
+.bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
