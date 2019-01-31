@@ -3,38 +3,13 @@
 		.container
 			h2.h2 some title
 			.content-holder
-				.card(v-for="card in cards")
+				.card(v-for="card in cards" :key="card.id")
 					.card-holder
-						.img-holder
-							img(:src="getImg")
+						img(:src="card.image")
 						.text-holder
 							h4.h4 {{ card.title }}
 							p {{ card.description }}
 						a(href="#").btn {{ card.button }}
-				<!--.card-->
-					<!--.card-holder-->
-						<!--.img-holder-->
-							<!--img(src="images/service02.png", alt="images description")-->
-						<!--.text-holder-->
-							<!--h4.h4 foto beverking-->
-							<!--p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores enim fuga perferendis quam quibusdam tenetur?-->
-						<!--a(href="#").btn Meer informatie-->
-				<!--.card-->
-					<!--.card-holder-->
-						<!--.img-holder-->
-							<!--img(src="images/service03.png", alt="images description")-->
-						<!--.text-holder-->
-							<!--h4.h4 foto beverking-->
-							<!--p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores enim fuga perferendis quam quibusdam tenetur?-->
-						<!--a(href="#").btn Meer informatie-->
-				<!--.card-->
-					<!--.card-holder-->
-						<!--.img-holder-->
-							<!--img(src="images/service04.png", alt="images description")-->
-						<!--.text-holder-->
-							<!--h4.h4 foto beverking-->
-							<!--p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores enim fuga perferendis quam quibusdam tenetur?-->
-						<!--a(href="#").btn Meer informatie-->
 </template>
 
 <script>
@@ -45,25 +20,25 @@
             return {
                 cards: [
                     {
-                        noPhoto: require('./assets/service01.png'),
+                        image: require('./../assets/service01.png'),
 						title: 'foto beverking',
 						description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores enim fuga perferendis quam quibusdam tenetur?',
 						button: 'Meer informatie'
                     },
                     {
-                        image: 'Download',
+                        image: require('./../assets/service02.png'),
                         title: 'foto beverking',
                         description: 'Lorem ipsum amet, consectetur adipisicing elit. quibusdam tenetur?',
                         button: 'Meer informatie'
                     },
                     {
-                        image: 'Download',
+                        image: require('./../assets/service03.png'),
                         title: 'foto beverking',
                         description: 'Lorem ipsum quibusdam tenetur? consectetur adipisicing elit. quibusdam tenetur?',
                         button: 'Meer informatie'
                     },
                     {
-                        image: 'Download',
+                        image: require('./../assets/service04.png'),
                         title: 'foto beverking',
                         description: 'Lorem ipsum quibusdam tenetur?',
                         button: 'Meer informatie'
@@ -71,16 +46,6 @@
                 ]
             }
         },
-        computed: {
-            getImg: function(){
-                if (!!this.show.image){
-                    return this.show.image
-                } else{
-                    return noPhoto//'https://static.nn2.ru/img/2015/no-photo.jpg'
-                }
-            }
-        },
-        props: ['show'],
         components: {
             TheServices
         }

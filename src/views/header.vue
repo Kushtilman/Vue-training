@@ -2,9 +2,9 @@
 	header.header
 		.container
 			nav.menu
-				a(href="#").opener: span
-				ul.navbar
-					li.navbar-list(v-for="item in items"): a.navbar-link(href="#" :class="{ 'active': item.status }") {{ item.name }}
+				a(href="#" @click="show = show").opener: span
+				ul.navbar(v-show="!show")
+					li.navbar-list(v-for="item in items" :key="item.id"): a.navbar-link(href="#" :class="{ 'active': item.status }") {{ item.name }}
 			.logo
 				a(href="#"): img(src="../assets/logo.png", alt="SSA Group")
 
@@ -33,7 +33,8 @@
                         name: 'Contact',
                         status: false
                     },
-                ]
+                ],
+                show: false
 			}
 		},
         components: {
@@ -75,7 +76,7 @@
 
 		.navbar {
 			overflow: hidden;
-			opacity: 0;
+			/*opacity: 0;*/
 			transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
 			font-size: 20px;
 			list-style-type: none;

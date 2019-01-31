@@ -4,7 +4,7 @@
 			.content
 				h1.h2 Lorem ipsum dolor sit amet.
 				p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias aperiam architecto aspernatur beatae debitis eaque esse est expedita facere fugiat illum, magni maiores nemo nihil placeat provident quasi quia quibusdam reprehenderit sequi soluta sunt tempore totam vel vero voluptatum! Blanditiis dicta dolorem est ipsa magni quas sit, soluta sunt!
-			.btn-holder: a.btn(href="#" v-for="button in buttons" :class="{ 'active': button.status }") {{ button.name }}
+			.btn-holder: a.btn(href="#" v-for="button in buttons" :key="button.id" :class="{ 'active': button.status }") {{ button.name }}
 </template>
 
 <script>

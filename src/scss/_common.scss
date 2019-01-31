@@ -32,8 +32,7 @@ $media-expressions: (
 @import 'common/components/buttons';
 @import 'common/components/cards';
 
-
-//@import 'fonts/icomoon';
+@import 'fonts/icomoon';
 
 html {
     font-size: calc(100vw * 0.0036 + 12px);
