@@ -35,14 +35,18 @@
 	@import '../scss/_base.scss';
 
 	.intro {
-		height: calc(100vh - 80px);
 		background-image: url(../assets/slide.jpg);
+		@include media('>tablet') {
+			height: calc(100vh - 80px);
+		}
 		.container {
-			height: 100%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			@include media('>tablet') {
+				height: 100%;
+			}
 		}
 		.content {
 			max-width: 700px;

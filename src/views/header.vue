@@ -2,9 +2,10 @@
 	header.header
 		.container
 			nav.menu
-				a(href="#" @click="show = show").opener: span
-				ul.navbar(v-show="!show")
-					li.navbar-list(v-for="item in items" :key="item.id"): a.navbar-link(href="#" :class="{ 'active': item.status }") {{ item.name }}
+				a.opener(href="#" @click="show = !show" v-on:click="crossFilter" v-bind:class="{ active: isActive }"): span
+				transition(name="slide-fade")
+					ul.navbar(v-show="show")
+						li.navbar-list(v-for="item in items" :key="item.id"): a.navbar-link(:href="`${item.href}`" :class="{ 'active': item.status }") {{ item.name }}
 			.logo
 				a(href="#"): img(src="../assets/logo.png", alt="SSA Group")
 
@@ -19,26 +20,36 @@
                 items: [
 					{
 					    name: 'Over Ons',
+						href: '/',
 						status: true
 					},
                     {
                         name: 'Gratis software',
+                        href: '/article',
                         status: false
                     },
                     {
                         name: 'Showcase',
+                        href: '#',
                         status: false
                     },
                     {
                         name: 'Contact',
+                        href: '#',
                         status: false
                     },
                 ],
-                show: false
+                show: false,
+                isActive: false
 			}
 		},
         components: {
             TheHeader
+        },
+        methods: {
+            crossFilter: function(){
+                this.isActive = !this.isActive;
+            }
         }
     }
 </script>
@@ -50,6 +61,7 @@
 		background: $bg-light;
 		height: 80px;
 		position: relative;
+		z-index: 1;
 
 		.container {
 			max-width: 100%;
@@ -76,87 +88,29 @@
 
 		.navbar {
 			overflow: hidden;
-			/*opacity: 0;*/
 			transition: visibility .3s ease-in-out, opacity .3s ease-in-out;
 			font-size: 20px;
 			list-style-type: none;
 			text-transform: capitalize;
-			display: flex;
-			flex-direction: column;
 			text-align: center;
-			padding: 0;
+			padding: 0 50px;
 			margin: 0 auto;
+			border-top: 1px solid $red;
+			background: $bg-light;
+			position: absolute;
+			top: 100%;
+			min-height: 100vh;
+			left: 0;
+			box-shadow: 1px 2px 2px 0px #f8e81c;
 			@include media('>desktop') {
+				display: flex !important;
 				flex-direction: row;
 				opacity: 1;
 				overflow: visible;
-			}
-
-			.drop-down {
-				position: relative;
-			}
-
-			.drop-down > ul {
-				display: none;
-			}
-
-			.drop-down:hover > ul {
-				display: block;
-				border-top: 0;
-				z-index: 3;
 				position: static;
-				@include media('>desktop') {
-					position: absolute;
-					width: 180px;
-					top: calc(100% + 48px);
-					left: 50%;
-					transform: translateX(-50%);
-				}
-
-				&:before {
-					content: "";
-					width: 100%;
-					bottom: 100%;
-					left: 50%;
-					transform: translateX(-50%);
-					height: 0;
-					position: absolute;
-					@include media('>desktop') {
-						height: 48px;
-					}
-				}
-
-				.navbar-list {
-					margin: 0;
-					width: 100%;
-					text-align: center;
-					cursor: pointer;
-					padding: 5px 0;
-					font-size: 16px;
-					@include media('>tablet') {
-						font-size: 18px;
-					}
-					@include media('>desktop') {
-						padding: 10px 0;
-						font-size: 20px;
-					}
-
-					&:nth-child(1) {
-						@include media('>desktop') {
-							border-top: none;
-						}
-					}
-
-					&:last-child {
-						border-bottom: none;
-					}
-
-					&:hover {
-						a {
-							color: $white;
-						}
-					}
-				}
+				border-top: none;
+				min-height: auto;
+				box-shadow: none;
 			}
 		}
 
@@ -195,9 +149,9 @@
 					left: 25%;
 					right: 25%;
 					height: 3px;
-					margin: -2px 0 0; /* height/2 */
-					-webkit-transition: all 0.3s linear;
-					transition: all 0.3s linear;
+					margin: -2px 0 0;
+					-webkit-transition: all .3s linear;
+					transition: all .3s linear;
 				}
 
 				&:before,
@@ -226,22 +180,16 @@
 			span {
 				opacity: 0;
 			}
-		}
-
-		.close-btn > span,
-		.close-btn:after,
-		.close-btn:before,
-		.active .opener:after,
-		.active .opener:before {
-			transform: rotate(45deg);
-			top: 16px;
-			left: 15%;
-			right: 15%;
-		}
-
-		.close-btn:after,
-		.active .opener:after {
-			transform: rotate(-45deg);
+			&.opener:after,
+			&.opener:before {
+				transform: rotate(45deg);
+				top: 16px;
+				left: 15%;
+				right: 15%;
+			}
+			&.opener:after {
+				transform: rotate(-45deg);
+			}
 		}
 
 		@include media('<1025px') {
@@ -250,23 +198,15 @@
 					display: block;
 				}
 
-				ul {
-					border-top: 1px solid $red;
-					background: $bg-light;
-					overflow: hidden;
-					position: absolute;
-					top: 100%;
-					left: 0;
-					right: 0;
-					z-index: 999;
-				}
-
 				li {
 					margin: 0 auto;
 					text-align: center;
-					padding: 0;
+					padding: 10px 50px;
+					border-bottom: 1px solid;
 					background: $bg-light;
-
+					&:last-child {
+						border-bottom: none;
+					}
 					a {
 						display: block;
 						padding: 6px 5px;
@@ -279,6 +219,14 @@
 					visibility: visible;
 					height: auto;
 				}
+			}
+			.slide-fade-enter-active,
+			.slide-fade-leave-active {
+				transition: all .5s ease;
+				position: absolute;
+			}
+			.slide-fade-enter, .slide-fade-leave-to {
+				transform: translateX(-100%);
 			}
 		}
 	}

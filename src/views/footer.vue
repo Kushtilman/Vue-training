@@ -84,7 +84,9 @@
 		.container {
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-around;
+			@include media('>380px') {
+				justify-content: space-around;
+			}
 			@include media('>desktop') {
 				justify-content: space-between;
 			}
@@ -92,7 +94,6 @@
 		.submission-form,
 		.community,
 		.contact {
-			padding: 0 15px;
 			margin-bottom: 20px;
 		}
 
@@ -144,7 +145,7 @@
 		.community-list {
 			list-style-type: none;
 			font-size: 16px;
-			padding-left: 20px;
+			padding: 0 20px;
 			li {
 				position: relative;
 				line-height: 2;

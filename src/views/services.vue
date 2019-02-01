@@ -5,7 +5,7 @@
 			.content-holder
 				.card(v-for="card in cards" :key="card.id")
 					.card-holder
-						img(:src="card.image")
+						img(:src="card.image" :alt="`${card.alt}`")
 						.text-holder
 							h4.h4 {{ card.title }}
 							p {{ card.description }}
@@ -21,24 +21,28 @@
                 cards: [
                     {
                         image: require('./../assets/service01.png'),
+						alt: 'image-1',
 						title: 'foto beverking',
 						description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores enim fuga perferendis quam quibusdam tenetur?',
 						button: 'Meer informatie'
                     },
                     {
                         image: require('./../assets/service02.png'),
+                        alt: 'image-2',
                         title: 'foto beverking',
                         description: 'Lorem ipsum amet, consectetur adipisicing elit. quibusdam tenetur?',
                         button: 'Meer informatie'
                     },
                     {
                         image: require('./../assets/service03.png'),
+                        alt: 'image-3',
                         title: 'foto beverking',
                         description: 'Lorem ipsum quibusdam tenetur? consectetur adipisicing elit. quibusdam tenetur?',
                         button: 'Meer informatie'
                     },
                     {
                         image: require('./../assets/service04.png'),
+                        alt: 'image-4',
                         title: 'foto beverking',
                         description: 'Lorem ipsum quibusdam tenetur?',
                         button: 'Meer informatie'
