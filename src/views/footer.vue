@@ -4,7 +4,7 @@
 			.submission-form
 				h5.h5 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 				form.form
-					input(type="text", placeholder="Some text")
+					input(type="text" placeholder="Some text")
 					button(type="submit") Send
 			.community
 				h5.h5 Comumnity
