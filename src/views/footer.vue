@@ -4,8 +4,8 @@
 			.submission-form
 				h5.h5 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 				form.form
-					input(type="text" placeholder="Some text")
-					button(type="submit") Send
+					input(type="text", placeholder="Some text" :value="newComment" @change="getInput")
+					button(type="submit" @click="addComment") Send
 			.community
 				h5.h5 Comumnity
 				ul.community-list
@@ -72,7 +72,28 @@
 				]
             }
         },
-        components: { TheFooter }
+        components: { TheFooter },
+        methods: {
+            addComment(){
+                store.dispatch('addComment')
+                store.dispatch('clearField')
+            },
+            getInput(e){
+                store.dispatch('getComment', e.target.value)
+            },
+            edit(comment){
+                store.dispatch('editComment', comment)
+                this.clear = false
+            }
+        },
+        computed: {
+            newComment(){
+                return store.state.newComment
+            },
+            comments(){
+                return store.state.comments
+            }
+        }
     }
 </script>
 

@@ -4,7 +4,8 @@
 			article.article
 				.article-holder
 					.text-holder
-						h1.h1 text input
+						h1.h1(v-for="comment in comments") text input {{ comment.body }}
+						button(@click="edit(comment)") Edit
 						p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, nesciunt sapiente. Architecto fugit impedit incidunt magnam quas quod temporibus voluptate!
 						p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aut eveniet in itaque labore molestiae nam neque perferendis ratione recusandae.
 						.img-holder
