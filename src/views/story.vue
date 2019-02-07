@@ -4,8 +4,7 @@
 			article.article
 				.article-holder
 					.text-holder
-						h1.h1(v-for="comment in comments") text input {{ comment.body }}
-						button(@click="edit(comment)") Edit
+						h1.h1 {{ title }}
 						p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, nesciunt sapiente. Architecto fugit impedit incidunt magnam quas quod temporibus voluptate!
 						p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aut eveniet in itaque labore molestiae nam neque perferendis ratione recusandae.
 						.img-holder
@@ -22,14 +21,12 @@
 </template>
 
 <script>
-    import TheStory from './story.vue'
-
     export default {
-        data () {
-            return {}
-		},
-        components: {
-            TheStory
+        name: 'TheStory',
+        computed: {
+            title() {
+                return this.$store.state.message
+            }
         },
         methods: {
             crossFilter: function(){
@@ -62,27 +59,22 @@
 			}
 		}
 		.h1 {
+			min-width: 210px;
+			min-height: 50px;
 			background: $yellow;
-			text-align: left;
+			text-align: center;
 			display: inline-block;
-			padding: 7px 40px;
+			padding: 7px 15px;
 			margin-bottom: 10px;
 			line-height: 1.333;
-		}
-		.img-holder {
-			position: relative;
-			width: 100%;
-			height: 537px;
-			img {
-				position: absolute;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				object-fit: cover;
-				width: 100%;
-				height: 100%;
+			@include media('>tablet') {
+				min-width: 300px;
+				padding: 7px 40px;
+				text-align: left;
 			}
+		}
+		img {
+			width: 100%;
 		}
 		.picture-name {
 			display: block;

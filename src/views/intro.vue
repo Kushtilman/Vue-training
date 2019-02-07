@@ -8,25 +8,15 @@
 </template>
 
 <script>
-    import TheIntro from './intro.vue'
-
     export default {
+        name: 'TheIntro',
         data () {
             return {
                 buttons: [
-                    {
-                        name: 'Download',
-                        status: true
-                    },
-                    {
-                        name: 'Meer informatie',
-                        status: false
-                    },
+                    { name: 'Download', status: true },
+                    { name: 'Meer informatie', status: false },
                 ]
             }
-        },
-        components: {
-            TheIntro
         }
     }
 </script>

@@ -9,7 +9,7 @@
     import TheServices from './services.vue';
 
     export default {
-        name: "app",
+        name: "TheHome",
         components: {
             'the-intro': TheIntro,
             'the-services': TheServices

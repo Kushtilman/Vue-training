@@ -12,40 +12,20 @@
 </template>
 
 <script>
-    import TheHeader from './header.vue'
-
     export default {
+        name: 'TheHeader',
         data () {
             return {
                 items: [
-					{
-					    name: 'Over Ons',
-						href: '/',
-						status: true
-					},
-                    {
-                        name: 'Gratis software',
-                        href: '/article',
-                        status: false
-                    },
-                    {
-                        name: 'Showcase',
-                        href: '#',
-                        status: false
-                    },
-                    {
-                        name: 'Contact',
-                        href: '#',
-                        status: false
-                    },
+					{ name: 'Over Ons', 		href: '/', 			status: true },
+                    { name: 'Gratis software',  href: '/article', 	status: false },
+                    { name: 'Showcase', 		href: '#', 			status: false },
+                    { name: 'Contact', 			href: '#', 			status: false },
                 ],
                 show: false,
                 isActive: false
 			}
 		},
-        components: {
-            TheHeader
-        },
         methods: {
             crossFilter: function(){
                 this.isActive = !this.isActive;

@@ -13,9 +13,8 @@
 </template>
 
 <script>
-    import TheServices from './services.vue'
-
     export default {
+        name: 'TheServices',
         data () {
             return {
                 cards: [
@@ -49,9 +48,6 @@
                     },
                 ]
             }
-        },
-        components: {
-            TheServices
         }
     }
 </script>

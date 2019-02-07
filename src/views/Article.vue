@@ -6,7 +6,7 @@
     import TheStory from './story.vue';
 
     export default {
-        name: "app",
+        name: "TheArticle",
         components: {
             'the-story': TheStory,
         }

@@ -4,8 +4,8 @@
 			.submission-form
 				h5.h5 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 				form.form
-					input(type="text", placeholder="Some text" :value="newComment" @change="getInput")
-					button(type="submit" @click="addComment") Send
+					input(type="text", placeholder="Some text" v-model="message")
+					button(type="button" @click="send") Send
 			.community
 				h5.h5 Comumnity
 				ul.community-list
@@ -19,82 +19,44 @@
 		footer.footer-bottom
 			.container
 				span.copyright Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-				ul.socials: li(v-for="social in socials" :key="social.id"): a(href="#"): span(:class="`i ${social.icon}`")
+				ul.socials: li(v-for="social in socials" :key="social.id"): a(:href="`${social.href}`"): span(:class="`i ${social.icon}`")
 </template>
 
 <script>
-    import TheFooter from './footer.vue'
+    // import TheFooter from './footer.vue'
 
     export default {
+        name: 'TheFooter',
         data () {
             return {
+                message: '',
                 communityes: [
-                    {
-                        name: 'Over Ons'
-                    },
-                    {
-                        name: 'Gratis software'
-                    },
-                    {
-                        name: 'Showcase'
-                    },
-                    {
-                        name: 'Contact'
-                    },
+                    { name: 'Over Ons' },
+                    { name: 'Gratis software' },
+                    { name: 'Showcase' },
+                    { name: 'Contact' }
                 ],
                 contacts: [
-                    {
-                        name: 'Address:',
-						href: '#',
-                        data: 'Country, City, Street 123'
-                    },
-                    {
-                        name: 'Telephone:',
-						href: 'tel: 1234567890',
-                        data: '(123) 456 78 90'
-                    },
-                    {
-                        name: 'Email:',
-						href: 'mailto: somemail@mail.com',
-                        data: 'somemail@mail.com'
-                    },
+                    { name: 'Address:',		href: '#', 							data: 'Country, City, Street 123' },
+                    { name: 'Telephone:',	href: 'tel: 1234567890',			data: '(123) 456 78 90' },
+                    { name: 'Email:',		href: 'mailto: somemail@mail.com', 	data: 'somemail@mail.com' }
                 ],
 				socials: [
-					{
-					    icon: 'i-twitter'
-					},
-                    {
-                        icon: 'i-facebook'
-                    },
-                    {
-                        icon: 'i-play'
-                    },
+					{ icon: 'i-twitter', 	href: '#' },
+                    { icon: 'i-facebook', 	href: '#', },
+                    { icon: 'i-play', 		href: '#', }
 				]
             }
         },
-        components: { TheFooter },
-        methods: {
-            addComment(){
-                store.dispatch('addComment')
-                store.dispatch('clearField')
-            },
-            getInput(e){
-                store.dispatch('getComment', e.target.value)
-            },
-            edit(comment){
-                store.dispatch('editComment', comment)
-                this.clear = false
-            }
-        },
-        computed: {
-            newComment(){
-                return store.state.newComment
-            },
-            comments(){
-                return store.state.comments
-            }
-        }
+		methods: {
+            send() {
+                this.$store.dispatch('updateMessage', this.message)
+			}
+		}
+
+
     }
+
 </script>
 
 <style lang="scss">
